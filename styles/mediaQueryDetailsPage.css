@@ -1,0 +1,11 @@
+@media (min-width: 1024px) {
+  #container-main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .div-info {
+    min-height: 69px;
+  }
+}
