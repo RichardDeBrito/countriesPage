@@ -169,11 +169,28 @@ export function favoriteButton(country) {
             (item) => item.name.common === country.name.common
         );
 
-        if (!exists) {
+            if (!exists) {
             favorites.push(country);
             localStorage.setItem('favorite-countries', JSON.stringify(favorites));
+            favoriteButton.textContent = 'Remover dos favoritos';
         } else {
-            console.log('Esse país já está nos favoritos!');
+            favorites = favorites.filter(
+                (item) => item.name.common !== country.name.common
+            );
+            localStorage.setItem('favorite-countries', JSON.stringify(favorites));
+            favoriteButton.textContent = 'Adicionar aos favoritos';           
         };
     });
+
+    let favorites = JSON.parse(localStorage.getItem('favorite-countries')) || [];
+    
+    const exists = favorites.some(
+        (item) => item.name.common === country.name.common
+    );
+
+    if (exists) {
+        favoriteButton.textContent = "Remover dos favoritos";
+    } else {
+        favoriteButton.textContent = "Adicionar aos favoritos";
+    }
 };
