@@ -49,8 +49,14 @@
 }
 
 .info-title h1 {
-  font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.842);
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.info-title p {
+  text-align: center;
+  margin-top: 5px;
+  color: rgba(0, 0, 0, 0.63);
 }
 
 .value-info {

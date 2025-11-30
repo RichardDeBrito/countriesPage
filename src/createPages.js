@@ -58,7 +58,7 @@ export async function createCardsContries(nameList, capitalList, regionList, pop
 
                 localStorage.setItem('selectContrie', JSON.stringify(data[0]));
                 window.location.href = "./../public/detailsPage.html";
-                
+
             } catch(error) {
                 console.error('Error ao buscar dados do país', error);
             };
@@ -76,15 +76,18 @@ export async function createDetailsPage(name, officialName, flags, capital, popu
     imgFlag.src = flags;
     flag.appendChild(imgFlag);
 
-    const infoContries = document.createElement('div');
-    infoContries.classList.add('div-info');
-    infoContries.setAttribute('id', 'geral-info');
+    const infosContries = document.createElement('div');
+    infosContries.classList.add('div-info');
+    infosContries.setAttribute('id', 'geral-info');
+
     const infoTitle = document.createElement('div');
     infoTitle.classList.add('info-title');
+
     const nameContrie = document.createElement('h1');
     nameContrie.innerHTML = name;
     const nameContrieOfficial = document.createElement('p');
     nameContrieOfficial.innerHTML = officialName;
+    
     const containerMoreInfo = document.createElement('div');
     containerMoreInfo.classList.add('container-more-info');
     
@@ -110,24 +113,24 @@ export async function createDetailsPage(name, officialName, flags, capital, popu
     infoTitle.appendChild(nameContrie);
     infoTitle.appendChild(nameContrieOfficial);
 
-    infoContries.appendChild(infoTitle);
-    infoContries.appendChild(containerMoreInfo);
+    infosContries.appendChild(infoTitle);
+    infosContries.appendChild(containerMoreInfo);
 
     const principalDiv = document.createElement('div');
-    principalDiv.setAttribute('id', 'principalDiv');
+    principalDiv.setAttribute('id', 'principal-div');
     principalDiv.appendChild(flag);
-    principalDiv.appendChild(infoContries);
+    principalDiv.appendChild(infosContries);
     containerMain.appendChild(principalDiv);
 
 
     const listTitleInfosOne = ['Idiomas', 'Moedas', 'Domínios de Internet', 'Países na Fronteira'];
-    const valuesInfoOne = [languages, currencies, internetDomain, borders];
+    const valuesInfosOne = [languages, currencies, internetDomain, borders];
     const secundaryDiv = document.createElement('div');
     secundaryDiv.setAttribute('id', 'secundary-div');
 
     for(let i = 0; i < 4; i++) {
         
-        if(valuesInfoOne[i] === undefined) {
+        if(valuesInfosOne[i] === undefined) {
             console.log('Esse país não faz fronteira com nenhum outro.');
 
         } else {
@@ -139,7 +142,7 @@ export async function createDetailsPage(name, officialName, flags, capital, popu
             titleOneInfo.classList.add('title-one-info');
             const textTitleOneInfo = document.createElement('h3');
             textTitleOneInfo.innerHTML = listTitleInfosOne[i];
-            textTitleOneInfo.appendChild(textTitleOneInfo);
+            titleOneInfo.appendChild(textTitleOneInfo);
 
             const valueOneInfo = document.createElement('div');
             const textValueOneInfo = document.createElement('p');
@@ -148,7 +151,7 @@ export async function createDetailsPage(name, officialName, flags, capital, popu
                 textValueOneInfo.classList.add('language');
             }
 
-            textValueOneInfo.innerHTML = valuesInfoOne[i];
+            textValueOneInfo.innerHTML = valuesInfosOne[i];
             valueOneInfo.appendChild(textValueOneInfo);
 
             divOneInfo.appendChild(titleOneInfo);
