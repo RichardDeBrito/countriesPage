@@ -172,13 +172,13 @@ export function favoriteButton(country) {
             if (!exists) {
             favorites.push(country);
             localStorage.setItem('favorite-countries', JSON.stringify(favorites));
-            favoriteButton.textContent = 'Remover dos favoritos';
+            favoriteButton.innerHTML = '<a>Remover dos favoritos</a>';
         } else {
             favorites = favorites.filter(
                 (item) => item.name.common !== country.name.common
             );
             localStorage.setItem('favorite-countries', JSON.stringify(favorites));
-            favoriteButton.textContent = 'Adicionar aos favoritos';           
+            favoriteButton.innerHTML = '<a>Adicionar aos favoritos</a>';           
         };
     });
 
@@ -189,8 +189,8 @@ export function favoriteButton(country) {
     );
 
     if (exists) {
-        favoriteButton.textContent = "Remover dos favoritos";
+        favoriteButton.innerHTML = "<a>Remover dos favoritos</a>";
     } else {
-        favoriteButton.textContent = "Adicionar aos favoritos";
+        favoriteButton.innerHTML = "<a>Adicionar aos favoritos</a>";
     }
 };

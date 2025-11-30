@@ -28,6 +28,7 @@ header {
 a {
   text-decoration: none;
   color: black;
+  cursor: pointer;
 }
 
 .logo {
@@ -94,7 +95,7 @@ nav ul {
 }
 
 #general-container {
-  width: 100vw;
+  width: 100%;
   max-width: 1400px;
 }
 
@@ -105,6 +106,13 @@ nav ul {
 #countries-total-text {
   margin-left: 20px;
   color: var(--text-secundary-color);
+}
+
+#title-section {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
 }
 
 .country-card img {
