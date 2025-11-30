@@ -1,25 +1,25 @@
 import { apiRoutes } from "./api.js";
-import { createCardsContries } from "./createPages.js";
+import { createCardscountries } from "./createPages.js";
 
-export async function captureTotalContries(name, optionSearch = 0, region) {
-    let contriesList = [];
+export async function captureTotalcountries(name, optionSearch = 0, region) {
+    let countriesList = [];
 
     if(optionSearch === 0 || name === "") {
-        contriesList = await apiRoutes.searchAllContries();
+        countriesList = await apiRoutes.searchAllcountries();
     } else if(optionSearch === 1) {
-        contriesList = await apiRoutes.searchByName(name);
+        countriesList = await apiRoutes.searchByName(name);
     } else {
-        contriesList = await apiRoutes.searchByRegion(region);
+        countriesList = await apiRoutes.searchByRegion(region);
     };
 
-    const totalContriesText = document.getElementById('contries-total-text');
+    const totalcountriesText = document.getElementById('countries-total-text');
     
-    let quantContries = contriesList.length;
+    let quantcountries = countriesList.length;
 
-    if (quantContries === undefined) {
-        totalContriesText.innerHTML = 'Nenhum país encontrado.';
+    if (quantcountries === undefined) {
+        totalcountriesText.innerHTML = 'Nenhum país encontrado.';
     } else {
-        totalContriesText.innerHTML = `${contriesList.length} países encontrados`;
+        totalcountriesText.innerHTML = `${countriesList.length} países encontrados`;
     };
 };
 
@@ -54,16 +54,16 @@ export function captureLanguages(languages) {
 };
 
 export function captureBorders(borders) {
-    let contriesBorder = '';
+    let countriesBorder = '';
 
-    for(let contrie of borders) {
-        contriesBorder += `${contrie} `;
+    for(let country of borders) {
+        countriesBorder += `${country} `;
     };
 
     if (borders.length === 0) {
         return undefined;
     } else {
-        return contriesBorder;
+        return countriesBorder;
     };
 };
 
@@ -81,21 +81,21 @@ export function inputSearch() {
     const searchInput = document.getElementById('search-input');
 
     searchInput.addEventListener("input", async () => {
-        const nameContrie = searchInput.value;
+        const namecountry = searchInput.value;
 
-        const containerContries = document.getElementById('container-contries');
-        captureTotalContries(nameContrie, 1);
+        const containercountries = document.getElementById('container-countries');
+        captureTotalcountries(namecountry, 1);
 
-        containerContries.innerHTML = '';
+        containercountries.innerHTML = '';
 
-        const listNamesContries = await apiRoutes.captureNamesContries(nameContrie, 1);
-        const listCapitalsContries = await apiRoutes.captureCapitalContries(nameContrie, 1);
-        const listRegionsContries = await apiRoutes.captureRegionContries(nameContrie, 1);
-        const listPopulationContries = await apiRoutes.capturePopulationContries(nameContrie, 1);
-        const listImageContrie = await apiRoutes.captureImageContrie(nameContrie, 1);
-        const listContriesAll = await apiRoutes.searchByCompleteName(nameContrie, 1);
+        const listNamescountries = await apiRoutes.captureNamescountries(namecountry, 1);
+        const listCapitalscountries = await apiRoutes.captureCapitalcountries(namecountry, 1);
+        const listRegionscountries = await apiRoutes.captureRegioncountries(namecountry, 1);
+        const listPopulationcountries = await apiRoutes.capturePopulationcountries(namecountry, 1);
+        const listImagecountry = await apiRoutes.captureImagecountry(namecountry, 1);
+        const listcountriesAll = await apiRoutes.searchByCompleteName(namecountry, 1);
 
-        createCardsContries(listNamesContries, listCapitalsContries,listRegionsContries, listPopulationContries,listImageContrie, listContriesAll);
+        createCardscountries(listNamescountries, listCapitalscountries,listRegionscountries, listPopulationcountries,listImagecountry, listcountriesAll);
     });
 };
 
@@ -104,13 +104,13 @@ export function filterByRegion() {
 
     for (let continentBox of listContrinentBox) {
         continentBox.addEventListener('click', async () => {
-            const containerContries = document.getElementById('container-contries');
+            const containercountries = document.getElementById('container-countries');
             const filterActive = document.getElementById('active');
             filterActive.removeAttribute('id');
 
             continentBox.setAttribute('id', 'active');
 
-            containerContries.innerHTML = '';
+            containercountries.innerHTML = '';
 
             let continent = continentBox.innerHTML;
             let continentTraslate = '';
@@ -118,32 +118,32 @@ export function filterByRegion() {
             switch (continent) {
                 case 'Todos':
                     continentTraslate = 'nada';
-                    captureTotalContries(0);
+                    captureTotalcountries(0);
                     break;
 
                 case 'África':
                     continentTraslate = 'africa';
-                    captureTotalContries('A', 3, continentTraslate);
+                    captureTotalcountries('A', 3, continentTraslate);
                     break;
 
                 case 'Americas':
                     continentTraslate = 'americas';
-                    captureTotalContries('A', 3, continentTraslate);
+                    captureTotalcountries('A', 3, continentTraslate);
                     break;
                 
                 case 'Ásia':
                     continentTraslate = 'asia';
-                    captureTotalContries('A', 3, continentTraslate);
+                    captureTotalcountries('A', 3, continentTraslate);
                     break;
 
                 case 'Europa':
                     continentTraslate = 'europe';
-                    captureTotalContries('A', 3, continentTraslate);
+                    captureTotalcountries('A', 3, continentTraslate);
                     break;
                 
                 case 'Oceania':
                     continentTraslate = 'oceania';
-                    captureTotalContries('A', 3, continentTraslate);
+                    captureTotalcountries('A', 3, continentTraslate);
                     break;
             
                 default:
@@ -151,26 +151,26 @@ export function filterByRegion() {
             }
 
             if (continentTraslate === 'nada') {
-                createCardsContries(await apiRoutes.captureNamesContries(0), await apiRoutes.captureCapitalContries(0), await apiRoutes.captureRegionContries(0), await apiRoutes.capturePopulationContries(0), await apiRoutes.captureImageContrie(0));
+                createCardscountries(await apiRoutes.captureNamescountries(0), await apiRoutes.captureCapitalcountries(0), await apiRoutes.captureRegioncountries(0), await apiRoutes.capturePopulationcountries(0), await apiRoutes.captureImagecountry(0));
             } else {
-                createCardsContries(await apiRoutes.captureNamesContries('A', 3, continentTraslate), await apiRoutes.captureCapitalContries('A', 3, continentTraslate), await apiRoutes.captureRegionContries('A', 3, continentTraslate), await apiRoutes.capturePopulationContries('A', 3, continentTraslate), await apiRoutes.captureImageContrie('A', 3, continentTraslate));
+                createCardscountries(await apiRoutes.captureNamescountries('A', 3, continentTraslate), await apiRoutes.captureCapitalcountries('A', 3, continentTraslate), await apiRoutes.captureRegioncountries('A', 3, continentTraslate), await apiRoutes.capturePopulationcountries('A', 3, continentTraslate), await apiRoutes.captureImagecountry('A', 3, continentTraslate));
             };
         });
     };
 };
 
-export function favoriteButton(contrie) {
-    const favoriteButton = document.getElementById('favorite-contrie');
+export function favoriteButton(country) {
+    const favoriteButton = document.getElementById('favorite-country');
 
     favoriteButton.addEventListener('click', () => {
         let favorites = JSON.parse(localStorage.getItem('favorite-countries')) || [];
 
         const exists = favorites.some(
-            (item) => item.name.common === contrie.name.common
+            (item) => item.name.common === country.name.common
         );
 
         if (!exists) {
-            favorites.push(contrie);
+            favorites.push(country);
             localStorage.setItem('favorite-countries', JSON.stringify(favorites));
         } else {
             console.log('Esse país já está nos favoritos!');

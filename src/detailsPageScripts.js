@@ -1,23 +1,23 @@
 import { createDetailsPage } from "./createPages.js";
 import { captureCurrencies, captureLanguages, captureBorders, captureDomains, favoriteButton } from "./utils.js";
 
-const contrie = JSON.parse(localStorage.getItem("selectContrie"));
+const country = JSON.parse(localStorage.getItem("selectcountry"));
 
-const languages = Object.values(contrie.languages);
-const currencies = Object.values(contrie.currencies);
+const languages = Object.values(country.languages);
+const currencies = Object.values(country.currencies);
 
-const borders = contrie.borders;
-const lat = contrie.latlng[0];
-const lng = contrie.latlng[1];
+const borders = country.borders;
+const lat = country.latlng[0];
+const lng = country.latlng[1];
 
-const name = contrie.name.common;
-const nameOfficial = contrie.name.official;
-const flag = contrie.flags.svg;
-const capital = contrie.capital;
-const population = contrie.population.toLocaleString('pt-BR');
-const area = contrie.area.toLocaleString('pt-BR') + ' km²';
-const region = contrie.region;
-const domain = contrie.tld;
+const name = country.name.common;
+const nameOfficial = country.name.official;
+const flag = country.flags.svg;
+const capital = country.capital;
+const population = country.population.toLocaleString('pt-BR');
+const area = country.area.toLocaleString('pt-BR') + ' km²';
+const region = country.region;
+const domain = country.tld;
 
 const currenciesText = captureCurrencies(currencies);
 const languageText = captureLanguages(languages);
@@ -32,5 +32,5 @@ iframe.src = mapsLink;
 
 document.addEventListener('DOMContentLoaded', () => {
     createDetailsPage(name, nameOfficial, flag, capital, population, area, region, languageText, currenciesText, domainsText, borderValues);
-    favoriteButton(contrie);
+    favoriteButton(country);
 });

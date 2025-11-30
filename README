@@ -27,7 +27,7 @@ O projeto utiliza um design system completo com:
 
 ## API Utilizada
 
-**REST Countries API**  
+**REST countries API**  
 URL: https://restcountries.com/  
 Autenticação: Nenhuma (acesso direto)
 

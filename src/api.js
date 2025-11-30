@@ -1,18 +1,18 @@
 export class apiRoutes {
     static baseURL = 'https://restcountries.com/v3.1/';
 
-    static async searchAllContries() {
+    static async searchAllcountries() {
         try {
             const response = await fetch(`${apiRoutes.baseURL}all?fields=name,capital,currencies,flags,region,population`);
             const data = await response.json();
 
-            const contriesList = [];
+            const countriesList = [];
 
             for(let i = 0; i < data.length; i++) {
-                contriesList.push(data[i]);
+                countriesList.push(data[i]);
             }
 
-            return contriesList;
+            return countriesList;
 
         } catch (error) {
             console.error('Erro ao buscar países:', error);
@@ -55,124 +55,124 @@ export class apiRoutes {
         }
     }
 
-    static async captureNamesContries(name = 'A', optionSearch = 0, region = 'Americas') {
+    static async captureNamescountries(name = 'A', optionSearch = 0, region = 'Americas') {
         try {
-            let contriesList = [];
+            let countriesList = [];
 
             if (optionSearch === 0 || name === "") {
-                contriesList = await this.searchAllContries();
+                countriesList = await this.searchAllcountries();
             } else if(optionSearch === 1) {
-                contriesList = await this.searchByName(name);
+                countriesList = await this.searchByName(name);
             } else {
-                contriesList = await this.searchByRegion(region);
+                countriesList = await this.searchByRegion(region);
             };
 
-            const contriesNameList = [];
+            const countriesNameList = [];
     
-            for (let i = 0; i < contriesList.length; i++) {
-                contriesNameList.push(contriesList[i].name.common);
+            for (let i = 0; i < countriesList.length; i++) {
+                countriesNameList.push(countriesList[i].name.common);
             };
             
-            return contriesNameList;
+            return countriesNameList;
             
         } catch (error) {
             console.error('Erro ao buscar nome do pais', error);
         }
     }
 
-    static async captureRegionContries(name = 'A', optionSearch = 0, region = 'Americas') {
+    static async captureRegioncountries(name = 'A', optionSearch = 0, region = 'Americas') {
         try {
-            let contriesList = [];
-            const contriesRegionsList = [];
+            let countriesList = [];
+            const countriesRegionsList = [];
 
             if (optionSearch === 0 || name === "") {
-                contriesList = await this.searchAllContries();
+                countriesList = await this.searchAllcountries();
             } else if(optionSearch === 1) {
-                contriesList = await this.searchByName(name);
+                countriesList = await this.searchByName(name);
             } else {
-                contriesList = await this.searchByRegion(region);
+                countriesList = await this.searchByRegion(region);
             }
     
-            for (let i = 0; i < contriesList.length; i++) {
-                contriesRegionsList.push(contriesList[i].region);
+            for (let i = 0; i < countriesList.length; i++) {
+                countriesRegionsList.push(countriesList[i].region);
             };
     
-            return contriesRegionsList;
+            return countriesRegionsList;
             
         } catch (error) {
             console.error('Erro ao buscar região do país', error);
         }
     }
 
-    static async captureCapitalContries(name = 'A', optionSearch = 0, region = 'Americas') {
+    static async captureCapitalcountries(name = 'A', optionSearch = 0, region = 'Americas') {
         try {
-            let contriesList = [];
+            let countriesList = [];
 
             if (optionSearch === 0 || name === "") {
-                contriesList = await this.searchAllContries();
+                countriesList = await this.searchAllcountries();
             } else if(optionSearch === 1){
-                contriesList = await this.searchByName(name);
+                countriesList = await this.searchByName(name);
             } else {
-                contriesList = await this.searchByRegion(region);
+                countriesList = await this.searchByRegion(region);
             }
 
-            const contriesCapitalsList = [];
+            const countriesCapitalsList = [];
     
-            for (let i = 0; i < contriesList.length; i++) {
-                contriesCapitalsList.push(contriesList[i].capital[0]);
+            for (let i = 0; i < countriesList.length; i++) {
+                countriesCapitalsList.push(countriesList[i].capital[0]);
             };
     
-            return contriesCapitalsList;
+            return countriesCapitalsList;
 
         } catch (error) {
             console.error('Erro ao buscar capital do país', error);
         }
     }
 
-    static async capturePopulationContries(name = 'A', optionSearch = 0, region = 'Americas') {
+    static async capturePopulationcountries(name = 'A', optionSearch = 0, region = 'Americas') {
         try {
-            let contriesList = [];
+            let countriesList = [];
 
             if (optionSearch === 0 || name === "") {
-                contriesList = await this.searchAllContries();
+                countriesList = await this.searchAllcountries();
             } else if(optionSearch === 1){
-                contriesList = await this.searchByName(name);
+                countriesList = await this.searchByName(name);
             } else {
-                contriesList = await this.searchByRegion(region);    
+                countriesList = await this.searchByRegion(region);    
             }
 
-            const contriesPopulationList = [];
+            const countriesPopulationList = [];
     
-            for (let i = 0; i < contriesList.length; i++) {
-                contriesPopulationList.push(contriesList[i].population);
+            for (let i = 0; i < countriesList.length; i++) {
+                countriesPopulationList.push(countriesList[i].population);
             };
     
-            return contriesPopulationList;
+            return countriesPopulationList;
 
         } catch (error) {
             console.error('Erro ao buscar capital do país', error);
         }
     }
 
-    static async captureImageContrie(name = 'A', optionSearch = 0, region = 'Americas') {
+    static async captureImagecountry(name = 'A', optionSearch = 0, region = 'Americas') {
         try {
-            let contriesList = [];
+            let countriesList = [];
 
             if (optionSearch === 0 || name === "") {
-                contriesList = await this.searchAllContries();
+                countriesList = await this.searchAllcountries();
             } else if(optionSearch === 1){
-                contriesList = await this.searchByName(name);
+                countriesList = await this.searchByName(name);
             } else {
-                contriesList = await this.searchByRegion(region);
+                countriesList = await this.searchByRegion(region);
             };
 
-            const contriesFlagsList = [];
+            const countriesFlagsList = [];
 
-            for (let i = 0; i < contriesList.length; i++) {
-                contriesFlagsList.push(contriesList[i].flags);
+            for (let i = 0; i < countriesList.length; i++) {
+                countriesFlagsList.push(countriesList[i].flags);
             }
 
-            return contriesFlagsList;
+            return countriesFlagsList;
 
         } catch (error) {
             console.error('Erro ao buscar bandeira do pais', error);

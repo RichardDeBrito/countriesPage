@@ -1,30 +1,30 @@
 import { apiRoutes } from "./api.js";
 
-export async function createCardsContries(nameList, capitalList, regionList, populationList, imgList, contriesList = null) {
+export async function createCardscountries(nameList, capitalList, regionList, populationList, imgList, countriesList = null) {
 
-    const containerContries = document.getElementById('container-contries');
-    containerContries.innerHTML = '';
+    const containercountries = document.getElementById('container-countries');
+    containercountries.innerHTML = '';
     const quantCards = nameList.length;
 
     for(let i = 0; i < quantCards; i ++) {
-        const contrieCard = document.createElement('div');
-        contrieCard.classList.add('contrie-card');
-        contrieCard.setAttribute('id', `${i}`);
-        contrieCard.setAttribute('data-name', nameList[i]);
-        contrieCard.setAttribute('data-index', `${i}`);
+        const countryCard = document.createElement('div');
+        countryCard.classList.add('country-card');
+        countryCard.setAttribute('id', `${i}`);
+        countryCard.setAttribute('data-name', nameList[i]);
+        countryCard.setAttribute('data-index', `${i}`);
 
         const imgCard = document.createElement('img');
         const src = imgList[i].png;
         imgCard.src = src;
-        contrieCard.appendChild(imgCard);
+        countryCard.appendChild(imgCard);
 
-        const legendContrie = document.createElement('div');
-        legendContrie.classList.add('legend-contrie');
+        const legendcountry = document.createElement('div');
+        legendcountry.classList.add('legend-country');
         
-        const contrieName = document.createElement('p');
-        contrieName.classList.add('contrie-name');
-        contrieName.innerHTML = nameList[i];
-        legendContrie.appendChild(contrieName);
+        const countryName = document.createElement('p');
+        countryName.classList.add('country-name');
+        countryName.innerHTML = nameList[i];
+        legendcountry.appendChild(countryName);
 
         const containerInfos = document.createElement('div');
         containerInfos.classList.add('container-infos-card');
@@ -39,30 +39,30 @@ export async function createCardsContries(nameList, capitalList, regionList, pop
         containerInfos.appendChild(capitalRegion);
         containerInfos.appendChild(population);
 
-        legendContrie.appendChild(containerInfos);
-        contrieCard.appendChild(legendContrie);
+        legendcountry.appendChild(containerInfos);
+        countryCard.appendChild(legendcountry);
 
-        containerContries.appendChild(contrieCard);
+        containercountries.appendChild(countryCard);
 
-        contrieCard.addEventListener('click', async (event) => {
+        countryCard.addEventListener('click', async (event) => {
             if(event && typeof event.preventDefault === 'function') event.preventDefault();
 
-            const idx = parseInt(contrieCard.getAttribute('data-index'), 10);
+            const idx = parseInt(countryCard.getAttribute('data-index'), 10);
 
-            if(contriesList && contriesList[idx]) {
-                localStorage.setItem('selectContrie', JSON.stringify(contriesList[idx]));
+            if(countriesList && countriesList[idx]) {
+                localStorage.setItem('selectcountry', JSON.stringify(countriesList[idx]));
                 window.location.href = "./../public/detailsPage.html";
                 return;
             }
 
-            const nameContrie = contrieCard.getAttribute('data-name');
+            const namecountry = countryCard.getAttribute('data-name');
             try {
-                const data = await apiRoutes.searchByCompleteName(nameContrie);
+                const data = await apiRoutes.searchByCompleteName(namecountry);
                 if(!data || data.length === 0) {
-                    console.error('País não encontrado:', nameContrie);
+                    console.error('País não encontrado:', namecountry);
                     return;
                 }
-                localStorage.setItem('selectContrie', JSON.stringify(data[0]));
+                localStorage.setItem('selectcountry', JSON.stringify(data[0]));
                 window.location.href = "./../public/detailsPage.html";
             } catch(error) {
                 console.error('Erro ao buscar dados do país', error);
@@ -76,22 +76,22 @@ export async function createDetailsPage(name, officialName, flags, capital, popu
 
     const flag = document.createElement('div');
     flag.classList.add('flag');
-    flag.classList.add('flag-contrie');
+    flag.classList.add('flag-country');
     const imgFlag = document.createElement('img');
     imgFlag.src = flags;
     flag.appendChild(imgFlag);
 
-    const infosContries = document.createElement('div');
-    infosContries.classList.add('div-info');
-    infosContries.setAttribute('id', 'geral-info');
+    const infoscountries = document.createElement('div');
+    infoscountries.classList.add('div-info');
+    infoscountries.setAttribute('id', 'geral-info');
 
     const infoTitle = document.createElement('div');
     infoTitle.classList.add('info-title');
 
-    const nameContrie = document.createElement('h1');
-    nameContrie.innerHTML = name;
-    const nameContrieOfficial = document.createElement('p');
-    nameContrieOfficial.innerHTML = officialName;
+    const namecountry = document.createElement('h1');
+    namecountry.innerHTML = name;
+    const namecountryOfficial = document.createElement('p');
+    namecountryOfficial.innerHTML = officialName;
     
     const containerMoreInfo = document.createElement('div');
     containerMoreInfo.classList.add('container-more-info');
@@ -115,16 +115,16 @@ export async function createDetailsPage(name, officialName, flags, capital, popu
         containerMoreInfo.appendChild(boxInfo);
     }
 
-    infoTitle.appendChild(nameContrie);
-    infoTitle.appendChild(nameContrieOfficial);
+    infoTitle.appendChild(namecountry);
+    infoTitle.appendChild(namecountryOfficial);
 
-    infosContries.appendChild(infoTitle);
-    infosContries.appendChild(containerMoreInfo);
+    infoscountries.appendChild(infoTitle);
+    infoscountries.appendChild(containerMoreInfo);
 
     const principalDiv = document.createElement('div');
     principalDiv.setAttribute('id', 'principal-div');
     principalDiv.appendChild(flag);
-    principalDiv.appendChild(infosContries);
+    principalDiv.appendChild(infoscountries);
     containerMain.appendChild(principalDiv);
 
 

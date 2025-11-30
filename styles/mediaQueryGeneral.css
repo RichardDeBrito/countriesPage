@@ -1,5 +1,5 @@
 @media (min-width: 7700px) {
-  #container-contries {
+  #container-countries {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -7,7 +7,7 @@
 }
 
 @media (min-width: 1024px) {
-  #container-contries {
+  #container-countries {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -24,7 +24,7 @@
     margin-top: 20px;
   }
 
-  #search-contries input {
+  #search-countries input {
     width: 400px;
     margin: 0px 20px;
   }
@@ -41,7 +41,7 @@
     margin: auto;
   }
 
-  .contries-total {
+  .countries-total {
     width: 100%;
     margin-bottom: 50px;
   }
@@ -66,7 +66,7 @@
 }
 
 @media (min-width: 1200px) {
-  #container-contries {
+  #container-countries {
     grid-template-columns: repeat(4, 1fr);
   }
 }
